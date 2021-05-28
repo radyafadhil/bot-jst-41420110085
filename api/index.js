@@ -29,7 +29,7 @@ bot.onText(/\/predict/, (msg) => {
     state = 1
 });
 
-bot.on('message', (msg) -> {
+bot.on('message', (msg) => {
 	if(state == 1){
 		console.log(msg.Text);
 		s = msg.Text.split("|");
@@ -40,7 +40,7 @@ bot.on('message', (msg) -> {
 				parseFloat(s[0]),
 				parseFloat(s[1])
 			]
-		).then((jres)->{
+		).then((jres)=>{
 			bot.sendMessage(
 				msg.chat.id,
 				'nilai v yang diprediksi adalah ${jres[0]} volt'
