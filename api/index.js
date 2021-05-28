@@ -6,25 +6,17 @@ const model = require('./sdk/model.js');
 
 // Bot Setting
 const TelegramBot = require('node-telegram-bot-api');
-const token = '1781217246:AAFHYFBOPzB5DGGQGpvxuOTacnDqxrwq_5I'
+const token = '1781217246:AAFHYFBOPzB5DGgqgPVXUotACNdQxRWQ_5I'
 const bot = new TelegramBot(token, {polling: true});
 
 
-// bots
+// Main Menu Bot
 bot.onText(/\/start/, (msg) => { 
     console.log(msg)
     bot.sendMessage(
         msg.chat.id,
         `hello ${msg.chat.first_name}, welcome...\n
-        click /menu to main menu`
-    );   
-});
-
-bot.onText(/\/menu/, (msg) => { 
-    console.log(msg)
-    bot.sendMessage(
-        msg.chat.id,
-        `this is your main menu`
+        click /predict`
     );   
 });
 
