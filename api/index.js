@@ -60,6 +60,7 @@ bot.on('message', (msg) => {
                 `nilai p yang diprediksi adalah ${jres[1]} watt`
         );
     })
+		state = 0
     }else {
         state = 0 
         }
