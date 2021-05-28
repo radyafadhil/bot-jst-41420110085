@@ -31,11 +31,37 @@ bot.onText(/\/predict/, (msg) => {
     state = 1
 });
 
+//bot.on('message', (msg) => {
+//	if(state == 1){
+//		console.log(msg.Text);		
+//  	}else {
+//        	state = 0 
+//        }
+//})
+
 bot.on('message', (msg) => {
 	if(state == 1){
-		console.log(msg.Text);		
-    	}else {
-        	state = 0 
+		console.log(msg.Text);
+		s = msg.text.split("|");
+		i = s[0]
+		v = s[1]
+		model.predict(
+			[
+				parseFloat(s[0]),
+				parseFloat(s[1])
+			]
+		).then((jres)=>{
+			bot.sendMessage(
+				msg.chat.id,
+				`nilai v yang diprediksi adalah ${jres[0]} volt`
+        );
+        bot.sendMessage(
+                msg.chat.id,
+                `nilai p yang diprediksi adalah ${jres[1]} watt`
+        );
+    })
+    }else {
+        state = 0 
         }
 })
 
