@@ -13,15 +13,15 @@ const argMax = argFact((min, el) => (el[0] > min[0] ? el : min))
 
 function ArgMax(res){
   label = "NORMAL"
-  //cls_data = []
-  //for(i=0; i<res.length; i++){
-  //  cls_data[i] = res[i] 
-  //}
-  //console.log(cls_data, argMax(cls_data));
+  cls_data = []
+  for(i=0; i<res.length; i++){
+    cls_data[i] = res[i] 
+  }
+  console.log(cls_data, argMax(cls_data));
   
-  if(argMax(res) == 1){
+  if(argMax(cls_data) == 1){
     label = "Over Voltage" 
-  }if(argMax(res) == 0){
+  }if(argMax(cls_data) == 0){
     label = "Drop Voltage" 
   }
   return label
