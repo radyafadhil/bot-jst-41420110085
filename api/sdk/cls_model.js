@@ -10,15 +10,14 @@ function normalized(data){
 
 const argFact = (compareFn) => (array) => array.map((el, idx) => [el, idx]).reduce(compareFn)[1]
 const argMax = argFact((min, el) => (el[0] > min[0] ? el : min))
-a = 1;
 
 function ArgMax(res){
   label = "NORMAL"
-  cls_data = []
-  for(i=0; i<res.length; i++){
-    cls_data[i] = res[i] 
-  }
-  console.log(cls_data, argMax(cls_data));
+  //cls_data = []
+  //for(i=0; i<res.length; i++){
+  //  cls_data[i] = res[i] 
+  //}
+  //console.log(cls_data, argMax(cls_data));
   
   if(argMax(res) == 1){
     label = "Over Voltage" 
@@ -38,7 +37,8 @@ async function classify(data){
   
    try{
         // path load in public access => github
-        const path = 'https://raw.githubusercontent.com/radyafadhil/bot-jst-41420110085/main/public/cls_model/model.json';
+        const path = 'https://raw.githubusercontent.com/radyafadhil/bot-jst-41420110085/main/public/cls_model/model.json'
+        //const path = 'https://raw.githubusercontent.com/radyafadhil/bot-jst-41420110085/main/public/ex_model/model.json';
         //const path = 'https://raw.githubusercontent.com/zendi014/bot-jst/main/public/ex_model/model.json';
         const model = await tf.loadGraphModel(path);
         
