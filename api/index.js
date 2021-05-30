@@ -52,7 +52,7 @@ bot.on('message', (msg) => {
 				parseFloat(s[1])
 			]
 		).then((jres)=>{
-			cls_model.classify([parseFloat(s[0]), parseFloat(s[1]), parseFloat(jres[0]), parseFloat(jres[1])]).then((jres2)=>{
+			cls_model.classify([parseFloat(s[0]), parseFloat(s[1]), parseFloat(jres[0]), parseFloat(jres[1])]).then((jres)=>{
 			bot.sendMessage(
 				msg.chat.id,
 				`nilai v yang diprediksi adalah ${jres[0]} volt`
@@ -63,7 +63,7 @@ bot.on('message', (msg) => {
 			);
 			bot.sendMessage(
 				msg.chat.id,
-				`klasifikasi tegangan ${jres2}`
+				`klasifikasi tegangan ${jres}`
 			);
 			state = 0
 		})
