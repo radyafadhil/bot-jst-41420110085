@@ -19,7 +19,7 @@ function ArgMax(res){
   }
   console.log(cls_data, argMax(cls_data));
   
-  if(ArgMax(cls_data) == 1){
+  if(1 == 1){
     label = "Over Voltage" 
   }if(ArgMax(cls_data) == 0){
     label = "Drop Voltage" 
