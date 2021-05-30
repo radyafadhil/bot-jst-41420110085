@@ -53,6 +53,7 @@ bot.on('message', (msg) => {
 			]
 		).then((jres1)=>{
 			console.log(jres1);
+			console.log(parseFloat(s[0]), parseFloat(s[1]), parseFloat(jres1[0]), parseFloat(jres1[1]))
 			
 			cls_model.classify([parseFloat(s[0]), parseFloat(s[1]), parseFloat(jres1[0]), parseFloat(jres1[1])]).then((jres2)=>{
 			bot.sendMessage(
@@ -63,6 +64,7 @@ bot.on('message', (msg) => {
 				msg.chat.id,
 				`nilai p yang diprediksi adalah ${jres1[1]} watt`
 			);
+			console.log(jres2);
 			bot.sendMessage(
 				msg.chat.id,
 				`klasifikasi tegangan ${jres2}`
