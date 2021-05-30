@@ -56,6 +56,9 @@ bot.on('message', (msg) => {
 			console.log(parseFloat(s[0]), parseFloat(s[1]), parseFloat(jres1[0]), parseFloat(jres1[1]))
 			
 			cls_model.classify( [parseFloat(s[0]), parseFloat(s[1]), parseFloat(jres1[0]), parseFloat(jres1[1])] ).then((jres2)=>{
+			console.log('ini jres2 dibawah');
+			console.log(jres2);
+			
 			bot.sendMessage(
 				msg.chat.id,
 				`nilai v yang diprediksi adalah ${jres1[0]} volt`
@@ -64,10 +67,9 @@ bot.on('message', (msg) => {
 				msg.chat.id,
 				`nilai p yang diprediksi adalah ${jres1[1]} watt`
 			);
-			console.log(jres2);
 			bot.sendMessage(
 				msg.chat.id,
-				`klasifikasi tegangan`
+				`klasifikasi tegangan ${jres2}`
 			);
 			state = 0
 		})
