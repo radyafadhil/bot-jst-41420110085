@@ -3,6 +3,7 @@ var r = express.Router();
 
 // load pre-trained model
 const model = require('./sdk/model.js');
+const cls_mode = require('./sdk/cls_model.js');
 
 // Bot Setting
 const TelegramBot = require('node-telegram-bot-api');
@@ -54,14 +55,22 @@ bot.on('message', (msg) => {
 			bot.sendMessage(
 				msg.chat.id,
 				`nilai v yang diprediksi adalah ${jres[0]} volt`
-        );
-        bot.sendMessage(
-                msg.chat.id,
-                `nilai p yang diprediksi adalah ${jres[1]} watt`
-        );
+			);
+			bot.sendMessage(
+				msg.chat.id,
+				`nilai p yang diprediksi adalah ${jres[1]} watt`
+			);
+			bot.sendMessage(
+				msg.chat.id,
+				`klasifikasi tegangan ${jres2}`
+			);
     })
 		state = 0
     }else {
+	    bot.sendMessage(
+				msg.chat.id,
+				`please click /start`
+			);
         state = 0 
         }
 })
@@ -76,6 +85,26 @@ r.get('/prediction/:i/:r', function(req, res, next) {
     ).then((jres)=>{
         res.json(jres);
     })
+});
+
+r.get('/classify/:i/:r', function(req, res, next){
+	model.predict(
+		[
+			parseFLoat(req.params.i),
+			parseFloat(req.params.r)
+		]
+	).then((jres)=>{
+		cls_model.classify(
+			[
+				parseFloat(req.params.i),
+				parseFloat(req.params.r),
+				parseFloat(jres[0]),
+				parseFloat(jres[1])
+			]
+		).then((jres_)=>{
+			res.json({jres, jres_})
+		})
+	})
 });
 
 module.exports = r;
