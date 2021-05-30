@@ -26,3 +26,32 @@ function ArgMax(res){
   }
   return label
 }
+
+async function classify(data){
+  let in_dim = 4;
+  
+  data = normalized(data);
+  shape = [1, in_dim];
+  
+  tf_data = tf.tensor2d(data, shape);
+  
+   try{
+        // path load in public access => github
+        const path = 'https://raw.githubusercontent.com/radyafadhil/bot-jst-41420110085/main/public/ex_model/model.json';
+        //const path = 'https://raw.githubusercontent.com/zendi014/bot-jst/main/public/ex_model/model.json';
+        const model = await tf.loadGraphModel(path);
+        
+        predict = model.predict(
+                tf_data
+        );
+        result = predict.dataSync();
+        return ArgMax( result );
+        
+    }catch(e){
+      console.log(e);
+    }
+}
+
+module.exports = {
+  classify: classify 
+}
