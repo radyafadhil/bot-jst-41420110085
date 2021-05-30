@@ -42,7 +42,7 @@ bot.onText(/\/predict/, (msg) => {
 
 bot.on('message', (msg) => {
 	if(state == 1){
-		console.log(msg.Text);
+		//console.log(msg.Text);
 		s = msg.text.split("|");
 		//i = s[0]
 		//v = s[1]
@@ -55,7 +55,7 @@ bot.on('message', (msg) => {
 			console.log(jres1);
 			console.log(parseFloat(s[0]), parseFloat(s[1]), parseFloat(jres1[0]), parseFloat(jres1[1]))
 			
-			cls_model.classify([parseFloat(s[0]), parseFloat(s[1]), parseFloat(jres1[0]), parseFloat(jres1[1])]).then((jres2)=>{
+			cls_model.classify( [parseFloat(s[0]), parseFloat(s[1]), parseFloat(jres1[0]), parseFloat(jres1[1])] ).then((jres2)=>{
 			bot.sendMessage(
 				msg.chat.id,
 				`nilai v yang diprediksi adalah ${jres1[0]} volt`
@@ -104,7 +104,7 @@ r.get('/classify/:i/:r', function(req, res, next){
 				parseFloat(jres[1])
 			]
 		).then((jres_)=>{
-			res.json({jres, jres_})
+			res.json({jres_})
 		})
 	})
 });
