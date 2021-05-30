@@ -44,14 +44,15 @@ bot.on('message', (msg) => {
 	if(state == 1){
 		console.log(msg.Text);
 		s = msg.text.split("|");
-		i = s[0]
-		v = s[1]
+		//i = s[0]
+		//v = s[1]
 		model.predict(
 			[
 				parseFloat(s[0]),
 				parseFloat(s[1])
 			]
 		).then((jres)=>{
+			cls_model.classify([parseFloat(s[0]), parseFloat(s[1]), parseFloat(jres1[0]), parseFloat(jres1[1])]).then((jres2)=>{
 			bot.sendMessage(
 				msg.chat.id,
 				`nilai v yang diprediksi adalah ${jres[0]} volt`
@@ -64,13 +65,10 @@ bot.on('message', (msg) => {
 				msg.chat.id,
 				`klasifikasi tegangan ${jres2}`
 			);
-    })
-		state = 0
+			state = 0
+		})
+	})
     }else {
-	    bot.sendMessage(
-				msg.chat.id,
-				`please click /start`
-			);
         state = 0 
         }
 })
