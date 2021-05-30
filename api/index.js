@@ -67,16 +67,12 @@ bot.on('message', (msg) => {
 			console.log(jres2);
 			bot.sendMessage(
 				msg.chat.id,
-				`klasifikasi tegangan ${jres2}`
+				`klasifikasi tegangan`
 			);
 			state = 0
 		})
 	})
-    }else {
-	    bot.sendMessage(
-				msg.chat.id,
-				`please click /start`
-			);
+    }else {	   
         state = 0 
         }
 })
